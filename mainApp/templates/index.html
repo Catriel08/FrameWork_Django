@@ -1,11 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <title>VSystem</title>
 </head>
 <body>
-    <h1>Inicio</h1>
+    <header>
+
+        
+        
+
+    </header>
+
+
+    <nav class="nav">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a style="text-decoration: none;" href="">Inicio</a>
+            </li>            
+            <li class="nav-item">
+                <a style="text-decoration: none;" href="">Prueba</a>
+            </li>            
+        </ul>
+    </nav>
+
+
+    <div id="content">
+
+        <div class="box">
+            {% block content %}
+              
+        
+        
+        
+            {% endblock  %}
+        </div>        
+    </div>
 </body>
 </html>
