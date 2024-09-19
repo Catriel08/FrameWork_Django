@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+    <h1>{{tittle}}</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for estudiantes in estudiantes %}
+                <th scope=""row>{{forloop.counter}}</th>    
+                <th>{{estudiantes.nombre}}</th>
+                <th>{{estudiantes.apellidos}}</th>
+                <th>{{estudiantes.rol}}</th>
+                <th>{{estudiantes.email}}</th>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+
+{% endblock content %}

@@ -1,0 +1,40 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.env
+*.venv
+*.envrc
+.Python
+*.log
+*.pot
+*.mo
+*.log
+
+# Django
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+
+# Environments
+.env
+*.env
+
+# Migrations
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Byte-compiled
+*.so
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
