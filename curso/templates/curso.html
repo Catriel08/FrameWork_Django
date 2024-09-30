@@ -1,8 +1,51 @@
 {% extends "index.html" %}
 
-%{% block content %}
+{% block content %}
+<h1>{{ title }}</h1>
 
-<h1>Curso</h1>
+<!-- Mostrar alertas de mensajes -->
+{% if messages %}
+    <div>
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
 
+<!-- Formulario para crear un nuevo curso -->
+ <!--
+    <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar Curso</button>
+</form>
+-->
 
-{% endblock content %}%
+<div>
+    <a href="{% url "agregar-curso" %}" class="btn btn-primary" role="button">Agregar Nuevo Curso</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Capacidad Máxima</th>
+            <th scope="col">Profesor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for curso in curso %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>    
+            <td>{{ curso.nombre }}</td>
+            <td>{{ curso.capacidad_maxima }}</td>
+            <td>{{ curso.profesor.nombre }} {{ curso.profesor.apellidos }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

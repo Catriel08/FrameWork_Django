@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from mainApp.views import inicio, hola_mundo
 from persona.views import get_estudiantes
-from curso.views import curso
+from curso.views import curso, curso_nuevo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,5 @@ urlpatterns = [
     path('lista-estudiantes/',get_estudiantes, name='lista-estudiantes'),
     path('prueba/', hola_mundo, name='prueba'),
     path('lista-cursos/',curso, name='cursos'),
+    path('agregar-curso/', curso_nuevo, name='agregar-curso'),
 ]
