@@ -8,7 +8,7 @@ def get_estudiantes(request):
     #seles * from persona
     
     return render(request, 'lista-estudiantes.html', {
-        'tittle': 'Lista de Estudiantes',
+        'title': 'Lista de Estudiantes',
         'estudiantes': estudiantes
     })
     

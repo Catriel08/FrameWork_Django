@@ -11,7 +11,7 @@ class Persona (models.Model):
     create_at=models.DateTimeField(auto_now_add=True)
     
     def __str__(self) -> str:
-        return f'{self.nombre} {self.apellidos} - {self.dni} - {self.rol}'
+        return f'{self.nombre} {self.apellidos}'
     
 class Meta:
         db_table='persona'
