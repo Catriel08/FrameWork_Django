@@ -11,7 +11,3 @@ def get_estudiantes(request):
         'title': 'Lista de Estudiantes',
         'estudiantes': estudiantes
     })
-    
-
-
-# Create your views here.
