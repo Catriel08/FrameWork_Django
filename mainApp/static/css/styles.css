@@ -148,7 +148,7 @@ footer{
 }
 
 .box form input[type="text"]{
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .box form input[type="submit"],
@@ -224,4 +224,8 @@ footer{
     float: left;
     padding: 15px;
     padding-top: 0px;
+}
+
+.formCreatePersona input[type="text"]{
+    text-transform: capitalize;
 }

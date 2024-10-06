@@ -21,9 +21,14 @@ class Curso(models.Model):
         if self.profesor and self.profesor.rol != 'Profesor':
             raise ValidationError('La persona asignada debe tener el rol "Profesor".')
         
+    def __str__(self):
+        return self.nombre
+        
     #def __str__(self) -> str:
         #return f'{self.nombre} - {self.capacidad_maxima} - {self.profesor.nombre} - {self.profesor.apellidos}'
         
+    #def __str__(self):
+        #return f'{self.nombre} - Capacidad: {self.capacidad_maxima} - Profesor: {self.profesor}'
+        
     class Meta:
         db_table = 'Curso'
-

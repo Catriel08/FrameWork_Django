@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+<h1 class="form">Formulario para agregar estudiantes</h1>
+
+<form action="{% url "lista-estudiantes" %}" method="post">
+    {% csrf_token %}
+
+    <div class="mb-3 formCreatePersona">
+      <label for="nameTextInput" class="form-label">Nombres</label>
+      <input type="text" class="form-control" id="nameTextInput">
+    </div>
+
+    <div class="mb-3">
+        <label for="lastNameTextInput" class="form-label">Apellidos</label>
+        <input type="text" class="form-control" id="lastNameTextInput">
+      </div>
+
+    <div class="mb-3">
+        <label for="dniTextInput" class="form-label">DNI</label>
+        <input type="text" class="form-control" id="dniTextInput">
+    </div>
+
+    <div class="mb-3">
+        <label for="telTextInput" class="form-label">Telefono</label>
+        <input type="text" class="form-control" id="telTextInput">
+    </div>
+
+    <div class="mb-3">
+        <label for="inputEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text"></div>
+    </div>
+
+    <div class="mb-3">
+      <label for="birthdateInput" class="form-label">Fecha de Nacimiento</label>
+      <input type="date" class="form-control" id="birthdateInput" name="birthdateInput">
+    </div>  
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+
+{% endblock content %}

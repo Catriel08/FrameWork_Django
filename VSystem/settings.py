@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'mainApp',
     'persona',
     'curso',
+    'matriculas',
+    'estudiantes_cursos'
 ]
 
 MESSAGE_TAGS = {
