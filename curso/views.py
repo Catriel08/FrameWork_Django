@@ -25,11 +25,11 @@ class CreateCursoView(CreateView):
         profesores = Persona.objects.filter(rol='Profesor')
         return render(request, self.template_name, {
             #'title': 'Agregar curso nuevo',
-            'profesores': profesores  # Pasar la lista de profesores al contexto
+            'profesores': profesores
         })
 
     def post(self, request, *args, **kwargs):
-        # Obtener los datos del formulario
+        
         nombre = request.POST.get('nameTextInput')
         capacidad_maxima = request.POST.get('capacidadTextInput')
         profesor_id = request.POST.get('profesorSelect')

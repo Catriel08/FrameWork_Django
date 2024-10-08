@@ -31,5 +31,4 @@ urlpatterns = [
     path('crear-estudiante/', CreateEstudiantesView.as_view(), name='form-create-estudiantes'),
     path('matriculas/', matriculas, name='matriculas'),
     path('estudiante-curso/', estudianteCurso, name='estudiante-curso'),
-    #path('crear-estudiante/', fromCreateEstudiante, name='form-create-persona')
 ]

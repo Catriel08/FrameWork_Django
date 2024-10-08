@@ -1,5 +1,4 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse, JsonResponse
 from django.views.generic import View, UpdateView, ListView, DeleteView, CreateView
 from .models import Persona
 
