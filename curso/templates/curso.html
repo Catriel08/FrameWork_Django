@@ -15,17 +15,8 @@
     </div>
 {% endif %}
 
-<!-- Formulario para crear un nuevo curso -->
- <!--
-    <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Guardar Curso</button>
-</form>
--->
-
 <div>
-    <a href="{% url "agregar-curso" %}" class="btn btn-primary" role="button">Agregar Nuevo Curso</a>
+    <a href="{% url "agregar-curso" %}" class="btn btn-primary" role="button">Agregar cursos</a>
 </div>
 
 <table class="table">

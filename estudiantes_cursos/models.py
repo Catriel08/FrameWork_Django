@@ -8,7 +8,7 @@ class EstudiantesCursos(models.Model):
     fecha_inicio = models.DateField()
     fecha_final = models.DateField(null=True, blank=True)
     estado = models.CharField(max_length=50)
-    nota_final = models.DecimalField(max_digits=3, decimal_places=1, blank=True)
+    nota_final = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
     def __str__(self):
         return f"Estudiante: {self.estudiante} - Curso: {self.curso}"

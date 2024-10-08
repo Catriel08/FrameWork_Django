@@ -6,6 +6,6 @@ def estudianteCurso(request):
     estudianteCurso = EstudiantesCursos.objects.all();
     
     return render(request, 'estudiante_curso.html', {
-        'title': 'Me la juego un 90% a que está MAL XD',
+        'title': 'Matricula de estudiante por curso',
         'estudiantes_cursos': estudianteCurso
     })

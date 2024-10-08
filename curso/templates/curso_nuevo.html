@@ -2,20 +2,34 @@
 
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar curso nuevo</title>
-</head>
-<body>
-    <form method="post" class="nuevo-curso">
-        <input type="text" placeholder="nombre del curso">
-        <input type="text" placeholder="Capacidad maxima">
-        <input type="text" placeholder="profesor">
-    </form>
-</body>
-</html>
+<h1>{{ title }}</h1>
+
+<h1 class="form">Agregar curso nuevo</h1>
+
+<form action="{% url 'agregar-curso' %}" method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="nameTextInput" class="form-label">Nombre del curso</label>
+      <input type="text" class="form-control" id="nameTextInput" name='nameTextInput'>
+    </div>
+
+    <div class="mb-3">
+        <label for="capacidadTextInput" class="form-label">Capacidad Máxima</label>
+        <input type="number" class="form-control" id="capacidadTextInput" name='capacidadTextInput'>
+    </div>
+
+    <div class="mb-3">
+        <label for="profesorSelect" class="form-label">Profesor</label>
+        <select class="form-control" id="profesorSelect" name="profesorSelect">
+            <option value="">Seleccionar profesor</option>
+            {% for profesor in profesores %}
+                <option value="{{ profesor.id }}">{{ profesor.nombre }} {{ profesor.apellidos }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
 
 {% endblock content %}

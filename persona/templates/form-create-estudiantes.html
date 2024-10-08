@@ -6,32 +6,32 @@
 
 <h1 class="form">Formulario para agregar estudiantes</h1>
 
-<form action="{% url "lista-estudiantes" %}" method="post">
+<form action="{% url "form-create-estudiantes" %}" method="post">
     {% csrf_token %}
 
     <div class="mb-3 formCreatePersona">
       <label for="nameTextInput" class="form-label">Nombres</label>
-      <input type="text" class="form-control" id="nameTextInput">
+      <input type="text" class="form-control" id="nameTextInput" name='nameTextInput'>
     </div>
 
     <div class="mb-3">
         <label for="lastNameTextInput" class="form-label">Apellidos</label>
-        <input type="text" class="form-control" id="lastNameTextInput">
+        <input type="text" class="form-control" id="lastNameTextInput" name='lastNameTextInput'>
       </div>
 
     <div class="mb-3">
         <label for="dniTextInput" class="form-label">DNI</label>
-        <input type="text" class="form-control" id="dniTextInput">
+        <input type="text" class="form-control" id="dniTextInput" name='dniTextInput'>
     </div>
 
     <div class="mb-3">
         <label for="telTextInput" class="form-label">Telefono</label>
-        <input type="text" class="form-control" id="telTextInput">
+        <input type="text" class="form-control" id="telTextInput" name='telTextInput'>
     </div>
 
     <div class="mb-3">
         <label for="inputEmail" class="form-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+        <input type="email" class="form-control" id="inputEmail" name='inputEmail' aria-describedby="emailHelp">
         <div id="emailHelp" class="form-text"></div>
     </div>
 

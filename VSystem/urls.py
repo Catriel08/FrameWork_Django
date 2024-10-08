@@ -17,18 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mainApp.views import inicio
-from persona.views import get_estudiantes, fromCreateEstudiante
-from curso.views import curso, curso_nuevo
+from persona.views import ListEstudiantesView, CreateEstudiantesView
+from curso.views import ListCursosView, CreateCursoView
 from matriculas.views import matriculas
 from estudiantes_cursos.views import estudianteCurso
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',inicio,  name='inicio'),
-    path('lista-estudiantes/',get_estudiantes, name='lista-estudiantes'),
-    path('lista-cursos/',curso, name='cursos'),
-    path('agregar-curso/', curso_nuevo, name='agregar-curso'),
-    path('crear-estudiante/', fromCreateEstudiante, name='form-create-persona'),
+    path('lista-estudiantes/', ListEstudiantesView.as_view(), name='lista-estudiantes'),
+    path('lista-cursos/',ListCursosView.as_view(), name='cursos'),
+    path('agregar-curso/', CreateCursoView.as_view(), name='agregar-curso'),
+    path('crear-estudiante/', CreateEstudiantesView.as_view(), name='form-create-estudiantes'),
     path('matriculas/', matriculas, name='matriculas'),
     path('estudiante-curso/', estudianteCurso, name='estudiante-curso'),
     #path('crear-estudiante/', fromCreateEstudiante, name='form-create-persona')

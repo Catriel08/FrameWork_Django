@@ -3,6 +3,11 @@
 {% block content %}
 
     <h1>{{title}}</h1>
+
+    <div>
+      <a href="{% url "form-create-estudiantes" %}" class="btn btn-primary" role="button">Agregar estudiantes</a>
+    </div>
+
     <table class="table">
         <thead>
           <tr>
@@ -25,7 +30,6 @@
                 <th>{{estudiantes.dni}}</th>
           </tr>
         </tbody>
-        {% endfor %}
-      </table>
-
+            {% endfor %}
+    </table>
 {% endblock content %}
