@@ -4,7 +4,7 @@
 
 <h1>{{ title }}</h1>
 
-<h1 class="form">Formulario para agregar cursos</h1>
+<h1 class="form"></h1>
 
 <form action="{% url "agregar-curso" %}" method="post" onsubmit="return validateCursoForm()">
     {% csrf_token %}

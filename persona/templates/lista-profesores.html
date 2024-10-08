@@ -5,7 +5,7 @@
     <h1>{{ title }}</h1>
 
     <div>
-      <a href="{% url "form-create-estudiantes" %}" class="btn btn-primary" role="button">Agregar estudiantes</a>
+      <a href="{% url 'form-create-profesores' %}" class="btn btn-primary" role="button">Agregar profesor</a>
     </div>
 
     {% if messages %}
@@ -30,16 +30,16 @@
           </tr>
         </thead>
         <tbody>
-          {% for estudiantes in estudiantes %}
+          {% for profesores in profesores %}
           <tr>
-              <th scope="row">{{forloop.counter}}</th>    
-              <td>{{estudiantes.nombre}}</td>
-              <td>{{estudiantes.apellidos}}</td>
-              <td>{{estudiantes.rol}}</td>
-              <td>{{estudiantes.email}}</td>
-              <td>{{estudiantes.dni}}</td>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ profesores.nombre }}</td>
+              <td>{{ profesores.apellidos }}</td>
+              <td>{{ profesores.rol }}</td>
+              <td>{{ profesores.email }}</td>
+              <td>{{ profesores.dni }}</td>
           </tr>
-        </tbody>
           {% endfor %}
+        </tbody>
     </table>
 {% endblock content %}

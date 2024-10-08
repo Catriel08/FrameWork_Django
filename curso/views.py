@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View, UpdateView, ListView, DeleteView, CreateView
 from .models import Curso
 from persona.models import Persona
+from django.contrib import messages
 
 class ListCursosView(ListView):
     model = Curso
@@ -19,17 +20,17 @@ class ListCursosView(ListView):
     
 class CreateCursoView(CreateView):
     model = Curso
+    fields = ['nombre', 'capacidad_maxima', 'profesor']
     template_name = 'curso_nuevo.html'
 
     def get(self, request, *args, **kwargs):
         profesores = Persona.objects.filter(rol='Profesor')
         return render(request, self.template_name, {
-            #'title': 'Agregar curso nuevo',
+            'title': 'Agregar curso nuevo',
             'profesores': profesores
         })
 
     def post(self, request, *args, **kwargs):
-        
         nombre = request.POST.get('nameTextInput')
         capacidad_maxima = request.POST.get('capacidadTextInput')
         profesor_id = request.POST.get('profesorSelect')
@@ -43,4 +44,5 @@ class CreateCursoView(CreateView):
         )
 
         cursos.save()
+        messages.success(request, f"El curso {nombre} ha sido creado correctamente")
         return redirect('cursos')
