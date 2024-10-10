@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import View, UpdateView, ListView, DeleteView, CreateView
 from .models import Persona
 from django.contrib import messages
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 
 class CreatePersonaView(CreateView):
@@ -83,6 +83,35 @@ class CreateProfesoresView(CreatePersonaView):
     success_url = 'lista-profesores'
     rol = 'Profesor'
     title = 'Agregar Profesor'
+    
+    
+    
+class GestionarEstudianteView(UpdateView):
+    model = Persona
+    template_name = 'gestionar-estudiante.html'
+    fields = ['nombre', 'apellidos', 'dni', 'telefono', 'email', 'fecha_nacimiento']
+    context_object_name = 'estudiante'
+    success_url = reverse_lazy('lista-estudiantes')
 
-            
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Gestionar Estudiante'
+        context['is_update'] = True
+        context['rol'] = self.object.rol
+        return context
+
+    def form_valid(self, form):
+        # Se asegura de que el rol no sea alterado
+        form.instance.rol = self.object.rol
+        return super().form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        if 'update' in request.POST:
+            messages.success(request, "Estudiante actualizado correctamente.")
+        elif 'delete' in request.POST:
+            self.object = self.get_object()
+            self.object.delete()
+            messages.success(request, "Estudiante eliminado correctamente.")
+            return redirect(self.success_url)
         
+        return super().post(request, *args, **kwargs)

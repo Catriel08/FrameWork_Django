@@ -148,7 +148,7 @@ footer{
 }
 
 .box form input[type="text"]{
-    text-transform: capitalize;
+    text-transform: none;
 }
 
 .box form input[type="submit"],
@@ -227,5 +227,10 @@ footer{
 }
 
 .formCreatePersona input[type="text"]{
-    text-transform: capitalize;
+    text-transform:none;
+}
+
+.btn-danger {
+    background-color: #ff0000; /* Asegúrate de que el color sea el correcto */
+    border-color: #dc3545; /* Esto debe ser el color del borde */
 }

@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mainApp.views import inicio
-from persona.views import ListEstudiantesView,ListProfesoresView, CreateEstudiantesView, CreateProfesoresView
+from persona.views import ListEstudiantesView,ListProfesoresView, CreateEstudiantesView, CreateProfesoresView, GestionarEstudianteView
 from curso.views import ListCursosView, CreateCursoView
 from matriculas.views import matriculas
 from estudiantes_cursos.views import estudianteCurso
@@ -33,6 +33,10 @@ urlpatterns = [
     
     path('crear-estudiante/', CreateEstudiantesView.as_view(), name='form-create-estudiantes'),
     path("crear-profesor/", CreateProfesoresView.as_view(), name="form-create-profesores"),
+    
+    #path("eliminar-profesor/<int:id>/", DeleteProfesorView.as_view(), name=""),
+    
+    path('gestionar-estudiante/<int:pk>/', GestionarEstudianteView.as_view(), name='gestionar-estudiante'),
 
     
     path('matriculas/', matriculas, name='matriculas'),
