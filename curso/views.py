@@ -4,6 +4,7 @@ from django.views.generic import View, UpdateView, ListView, DeleteView, CreateV
 from .models import Curso
 from persona.models import Persona
 from django.contrib import messages
+from django.urls import reverse, reverse_lazy
 
 class ListCursosView(ListView):
     model = Curso
@@ -12,7 +13,7 @@ class ListCursosView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Lista de cursos'
+        context['title'] = 'Lista de Cursos'
         return context
 
     def get_queryset(self):
@@ -46,3 +47,28 @@ class CreateCursoView(CreateView):
         cursos.save()
         messages.success(request, f"El curso {nombre} ha sido creado correctamente")
         return redirect('cursos')
+    
+    
+class GestionarCursoView(UpdateView):
+    model = Curso
+    template_name = 'gestionar-curso.html'
+    fields = ['nombre', 'capacidad_maxima', 'profesor']
+    context_object_name = 'curso'
+    success_url = reverse_lazy('cursos')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context ['title'] = 'Gestionar Curso'
+        context ['is_update'] = True
+        context['profesores'] = Persona.objects.filter(rol='Profesor')
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        if 'update' in request.POST:
+            messages.success(request, "Curso actualizado correctamente.")
+        elif 'delete' in request.POST:
+            self.object = self.get_object()
+            self.object.delete()
+            messages.success(request, "Curso eliminado correctamente.")
+            return redirect(self.success_url)
+        return super().post(request, *args, **kwargs)

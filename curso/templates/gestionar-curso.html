@@ -1,0 +1,67 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1 class="form">{{ title }}</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    
+    <div class="mb-3">
+        <label for="nameTextInput" class="form-label">Nombre</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="nameTextInput" 
+            name="nombre" 
+            pattern="[A-Za-z\s]+" 
+            title="Solo se permiten letras y espacios." 
+            value="{{ curso.nombre }}"
+            placeholder="Ingrese el nombre del curso"
+            required>
+    </div>
+
+    
+    <div class="mb-3">
+        <label for="capacidadTextInput" class="form-label">Capacidad Maxima</label>
+        <input 
+            type="number" 
+            class="form-control"
+            id="capacidadTextInput" 
+            name="capacidad_maxima"
+            min = "1"
+            max = "30"
+            title="Mínimo 1, Máximo 30" 
+            value="{{ curso.capacidad_maxima }}" 
+            placeholder="Ingrese la capacidad maxima del curso"
+            required>
+    </div>
+
+    
+    <div class="mb-3">
+        <label for="profesorSelect" class="form-label">Profesor</label>
+        <select class="form-control" id="profesorSelect" name="profesor" required>
+            <option value="">Seleccionar profesor</option>
+            {% for profesor in profesores %}
+                <option value="{{ profesor.id }}" {% if profesor.id == curso.profesor.id %}selected{% endif %}>
+                    {{ profesor.nombre }} {{ profesor.apellidos }}
+                </option>
+            {% endfor %}
+        </select>
+        {% if form.profesor.errors %}
+            <div class="invalid-feedback">
+                Seleccione un profesor.
+            </div>
+        {% endif %}
+    </div>
+    
+
+    <div class="d-flex align-items-center">
+        <button type="submit" class="btn btn-success" name="update">Actualizar</button>
+        <button type="submit" class="btn btn-danger mx-3" name="delete">Eliminar</button>
+        <a href="{% url 'cursos' %}" class="btn btn-secondary" role="button">Regresar</a>
+    </div>
+
+</form>
+
+{% endblock content %}

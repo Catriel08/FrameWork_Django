@@ -2,12 +2,12 @@
 
 {% block content %}
 
+  <div class="d-flex justify-content-between aling-items-center">
     <h1>{{ title }}</h1>
-
     <div>
-      <a href="{% url 'form-create-profesores' %}" class="btn btn-primary" role="button">Agregar profesor</a>
+      <a href="{% url 'form-create-profesores' %}" class="btn btn-outline-primary" role="button">Agregar Profesor</a>
     </div>
-
+  </div>  
     {% if messages %}
     <div>
         {% for message in messages %}
@@ -27,17 +27,21 @@
             <th scope="col">Rol</th>
             <th scope="col">Email</th>
             <th scope="col">DNI</th>
+            <th scope="col">Opciones</th>
           </tr>
         </thead>
         <tbody>
           {% for profesores in profesores %}
           <tr>
-              <th scope="row">{{ forloop.counter }}</th>
+              <td scope="row">{{ forloop.counter }}</td>
               <td>{{ profesores.nombre }}</td>
               <td>{{ profesores.apellidos }}</td>
               <td>{{ profesores.rol }}</td>
               <td>{{ profesores.email }}</td>
               <td>{{ profesores.dni }}</td>
+              <td>
+                <a href="{% url "gestionar-profesor" pk=profesores.pk %}" class="btn btn-primary">Gestionar</a>
+              </td>
           </tr>
           {% endfor %}
         </tbody>

@@ -3,11 +3,9 @@
 {% block content %}
 <h1 class="form">{{ title }}</h1>
 
-
 <form action="" method="post">
     {% csrf_token %}
 
-    
     <div class="mb-3">
         <label for="nameTextInput" class="form-label">Nombres</label>
         <input 
@@ -17,15 +15,11 @@
             name="nombre" 
             pattern="[A-Za-z\s]+" 
             title="Solo se permiten letras y espacios." 
-            value="{{ estudiante.nombre }}"
+            value="{{ persona.nombre }}"
             placeholder="Ingrese los nombres"
             required>
-        <div class="invalid-feedback">
-            Por favor ingresa un nombre válido (solo letras y espacios).
-        </div>
     </div>
 
-    
     <div class="mb-3">
         <label for="lastNameTextInput" class="form-label">Apellidos</label>
         <input 
@@ -35,15 +29,11 @@
             name="apellidos" 
             pattern="[A-Za-z\s]+" 
             title="Solo se permiten letras y espacios." 
-            value="{{ estudiante.apellidos }}" 
+            value="{{ persona.apellidos }}" 
             placeholder="Ingrese los apellidos"
             required>
-        <div class="invalid-feedback">
-            Por favor ingresa un apellido válido (solo letras y espacios).
-        </div>
     </div>
 
-    
     <div class="mb-3">
         <label for="dniTextInput" class="form-label">DNI</label>
         <input 
@@ -53,33 +43,25 @@
             name="dni" 
             pattern="\d{1,10}" 
             title="Solo se permiten números de hasta 10 dígitos." 
-            value="{{ estudiante.dni }}" 
+            value="{{ persona.dni }}" 
             placeholder="Ingrese el DNI"
             required>
-        <div class="invalid-feedback">
-            Por favor ingresa un DNI válido (solo números de hasta 10 dígitos).
-        </div>
     </div>
 
-    
     <div class="mb-3">
         <label for="telTextInput" class="form-label">Teléfono</label>
-        <input 
+        <input
             type="text" 
             class="form-control" 
             id="telTextInput" 
             name="telefono" 
             pattern="\d{1,10}" 
             title="Solo se permiten números de hasta 10 dígitos." 
-            value="{{ estudiante.telefono }}"
+            value="{{ persona.telefono }}"
             placeholder="Ingrese el número de teléfono"
             required>
-        <div class="invalid-feedback">
-            Por favor ingresa un número de teléfono válido (solo números de hasta 10 dígitos).
-        </div>
     </div>
 
-    
     <div class="mb-3">
         <label for="inputEmail" class="form-label">Email</label>
         <input 
@@ -87,16 +69,11 @@
             class="form-control" 
             id="inputEmail" 
             name="email" 
-            aria-describedby="emailHelp" 
-            value="{{ estudiante.email }}" 
+            value="{{ persona.email }}" 
             placeholder="Ingrese su correo electrónico"
             required>
-        <div class="invalid-feedback">
-            Ingrese un correo válido.
-        </div>
     </div>
 
-    
     <div class="mb-3">
         <label for="birthdateInput" class="form-label">Fecha de Nacimiento</label>
         <input 
@@ -104,31 +81,25 @@
             class="form-control" 
             id="birthdateInput" 
             name="fecha_nacimiento" 
-            value="{{ estudiante.fecha_nacimiento|date:'Y-m-d' }}" 
+            value="{{ persona.fecha_nacimiento|date:'Y-m-d' }}" 
             required>
-        <div class="invalid-feedback">
-            Seleccione una fecha de nacimiento válida.
-        </div>
     </div>
 
-    
     <div class="mb-3">
         <label for="rol" class="form-label">Rol</label>
         <input 
             type="text" 
             class="form-control" 
             id="rol" 
-            value="{{ estudiante.rol }}" 
+            value="{{ persona.rol }}" 
             disabled>
     </div>
 
-    
-    <div class="d-flex justify-content-between align-items-center">
-        <button type="submit" class="btn btn-success me-2" name="update">Actualizar</button>
-        <button type="submit" class="btn btn-danger me-2" name="delete">Eliminar</button>
-        <a href="{% url 'lista-estudiantes' %}" class="btn btn-secondary" role="button">Cancelar</a>
+    <div class="d-flex align-items-center">
+        <button type="submit" class="btn btn-success" name="update">Actualizar</button>
+        <button type="submit" class="btn btn-danger mx-3" name="delete">Eliminar</button>
+        <a href="{% if rol == 'Estudiante' %}{% url 'lista-estudiantes' %}{% elif rol == 'Profesor' %}{% url 'lista-profesores' %}{% endif %}" class="btn btn-secondary" role="button">Regresar</a>
     </div>
-    
-    
+
 </form>
 {% endblock content %}

@@ -2,12 +2,10 @@
 
 {% block content %}
 
-    
-
   <div class= "d-flex justify-content-between aling-items-center">
     <h1>{{ title }}</h1>
     <div>
-      <a href="{% url "form-create-estudiantes" %}" class="btn btn-primary" role="button">Agregar Estudiantes</a>
+      <a href="{% url "form-create-estudiantes" %}" class="btn btn-outline-primary" role="button">Agregar Estudiante</a>
     </div>  
   </div>
 
@@ -44,7 +42,7 @@
               <td>{{estudiantes.email}}</td>
               <td>{{estudiantes.dni}}</td>
               <td>
-                <a href="{% url 'gestionar-estudiante' pk=estudiantes.pk %}" class="btn btn-info">Gestionar</a>
+                <a href="{% url 'gestionar-estudiante' pk=estudiantes.pk %}" class="btn btn-primary">Gestionar</a>
               </td>
           </tr>
         </tbody>

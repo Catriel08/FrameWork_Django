@@ -2,8 +2,6 @@
 
 {% block content %}
 
-<h1>{{ title }}</h1>
-
 {% if messages %}
     <div>
         {% for message in messages %}
@@ -14,8 +12,11 @@
     </div>
 {% endif %}
 
-<div>
-    <a href="{% url "agregar-curso" %}" class="btn btn-primary" role="button">Agregar cursos</a>
+<div class="d-flex justify-content-between aling-items-center">
+    <h1>{{ title }}</h1>
+    <div>
+        <a href="{% url "agregar-curso" %}" class="btn btn-outline-primary" role="button">Agregar Curso</a>
+    </div>
 </div>
 
 <table class="table">
@@ -25,15 +26,19 @@
             <th scope="col">Nombre</th>
             <th scope="col">Capacidad Máxima</th>
             <th scope="col">Profesor</th>
+            <th scope="col">Opciones</th>
         </tr>
     </thead>
     <tbody>
         {% for curso in curso %}
         <tr>
-            <th scope="row">{{ forloop.counter }}</th>    
+            <td scope="row">{{ forloop.counter }}</td>    
             <td>{{ curso.nombre }}</td>
             <td>{{ curso.capacidad_maxima }}</td>
-            <td>{{ curso.profesor.nombre }} {{ curso.profesor.apellidos }}</td>
+            <td>{% if curso.profesor %}{{ curso.profesor.nombre}} {{ curso.profesor.apellidos }}{% else %}{{'Sin Asignar'}}{% endif %}</td>
+            <td>
+                <a href="{% url 'gestionar-curso' pk=curso.pk %}" class="btn btn-primary">Gestionar</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

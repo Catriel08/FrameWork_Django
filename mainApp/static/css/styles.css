@@ -151,7 +151,7 @@ footer{
     text-transform: none;
 }
 
-.box form input[type="submit"],
+/*.box form input[type="submit"],
 .box form input[type="submit"],
 .box form button{
     padding: 10px;
@@ -167,7 +167,7 @@ footer{
 .box form button:hover{
     cursor: pointer;
     background: #256b64;    
-}
+}*/
 
 .box form select{
     display: block;
@@ -231,6 +231,7 @@ footer{
 }
 
 .btn-danger {
+    color: #ff0000;
     background-color: #ff0000; /* Asegúrate de que el color sea el correcto */
     border-color: #dc3545; /* Esto debe ser el color del borde */
 }

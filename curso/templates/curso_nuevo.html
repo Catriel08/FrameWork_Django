@@ -21,15 +21,24 @@
 
     <div class="mb-3">
         <label for="profesorSelect" class="form-label">Profesor</label>
-        <select class="form-control" id="profesorSelect" name="profesorSelect">
+        <select class="form-control" id="profesorSelect" name="profesorSelect" required>
             <option value="">Seleccionar profesor</option>
             {% for profesor in profesores %}
                 <option value="{{ profesor.id }}">{{ profesor.nombre }} {{ profesor.apellidos }}</option>
             {% endfor %}
         </select>
+        {% if form.profesorSelect.errors %}
+            <div class="invalid-feedback">
+                Seleccione un profesor.
+            </div>
+        {% endif %}
     </div>
+    
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <div class="d-flex text-aling-center">
+        <button type="submit" class="btn btn-success mx-3">Guardar</button>
+        <a href="{% url "cursos" %}" class="btn btn-secondary" role="button">Regresar</a>
+    </div>    
 </form>
 
 {% endblock content %}

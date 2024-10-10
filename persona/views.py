@@ -86,16 +86,16 @@ class CreateProfesoresView(CreatePersonaView):
     
     
     
-class GestionarEstudianteView(UpdateView):
+class GestionarPersonaView(UpdateView):
     model = Persona
-    template_name = 'gestionar-estudiante.html'
+    template_name = 'gestionar-persona.html'
     fields = ['nombre', 'apellidos', 'dni', 'telefono', 'email', 'fecha_nacimiento']
-    context_object_name = 'estudiante'
-    success_url = reverse_lazy('lista-estudiantes')
+    context_object_name = 'persona'
+    success_url = reverse_lazy('lista-personas')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Gestionar Estudiante'
+        context['title'] = f'Gestionar {self.object.rol}'
         context['is_update'] = True
         context['rol'] = self.object.rol
         return context
@@ -106,12 +106,19 @@ class GestionarEstudianteView(UpdateView):
         return super().form_valid(form)
 
     def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
         if 'update' in request.POST:
-            messages.success(request, "Estudiante actualizado correctamente.")
+            messages.success(request, f"{self.object.rol} {self.object.nombre} {self.object.apellidos} actualizado correctamente.")
         elif 'delete' in request.POST:
             self.object = self.get_object()
             self.object.delete()
-            messages.success(request, "Estudiante eliminado correctamente.")
+            messages.success(request, f"{self.object.rol} {self.object.nombre} {self.object.apellidos} eliminado correctamente.")
             return redirect(self.success_url)
-        
         return super().post(request, *args, **kwargs)
+    
+
+class GestionarEstudianteView(GestionarPersonaView):
+    success_url = reverse_lazy('lista-estudiantes')
+
+class GestionarProfesorView(GestionarPersonaView):
+    success_url = reverse_lazy('lista-profesores')
