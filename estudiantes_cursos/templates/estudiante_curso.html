@@ -2,7 +2,25 @@
 {% load humanize %}
 
 {% block content %}
-<h1>{{ title }}</h1>
+
+{% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div class="d-flex justify-content-between aling-items-center">
+    <h1>{{ title }}</h1>
+    <div>
+        <a href="{% url "crear-estudiantes_cursos" %}" class="btn btn-outline-primary">Inscribir Estudiante</a>
+    </div>
+</div>
+
 
 <table class="table">
     <thead>
@@ -14,18 +32,22 @@
             <th scope="col">Fecha final</th>
             <th scope="col">Estado</th>
             <th scope="col">Nota final</th>
+            <th scope="col">Opciones</th>
         </tr>
     </thead>
     <tbody>
         {% for estudiante_curso in estudiantes_cursos %}
         <tr>
-            <th scope="row">{{ forloop.counter }}</th>    
+            <td scope="row">{{ forloop.counter }}</td>    
             <td>{{ estudiante_curso.estudiante }}</td>
             <td>{{ estudiante_curso.curso }}</td>
             <td>{{ estudiante_curso.fecha_inicio }}</td>
             <td>{{ estudiante_curso.fecha_final }}</td>
             <td>{{ estudiante_curso.estado }}</td>
             <td>{{ estudiante_curso.nota_final }}</td>
+            <td>
+                <a href="{% url 'gestionar-estudiantes_cursos' pk=estudiante_curso.pk %}" class="btn btn-primary">Gestionar</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

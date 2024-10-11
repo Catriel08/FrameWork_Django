@@ -20,7 +20,7 @@ from mainApp.views import inicio
 from persona.views import ListEstudiantesView,ListProfesoresView, CreateEstudiantesView, CreateProfesoresView, GestionarEstudianteView, GestionarProfesorView
 from curso.views import ListCursosView, CreateCursoView, GestionarCursoView
 from matriculas.views import matriculas
-from estudiantes_cursos.views import estudianteCurso
+from estudiantes_cursos.views import ListEstudianteCurso, CreateEstudianteCurso, GestionarEstudianteCurso
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,12 +35,15 @@ urlpatterns = [
     path('crear-estudiante/', CreateEstudiantesView.as_view(), name='form-create-estudiantes'),
     path("crear-profesor/", CreateProfesoresView.as_view(), name="form-create-profesores"),
     
-    #path("eliminar-profesor/<int:id>/", DeleteProfesorView.as_view(), name=""),
     
     path('gestionar-estudiante/<int:pk>/', GestionarEstudianteView.as_view(), name='gestionar-estudiante'),
     path('gestionar-profesor/<int:pk>/', GestionarProfesorView.as_view(), name='gestionar-profesor'),
 
     
     path('matriculas/', matriculas, name='matriculas'),
-    path('estudiante-curso/', estudianteCurso, name='estudiante-curso'),
+    
+    path('estudiante-curso/', ListEstudianteCurso.as_view(), name='estudiante-curso'),
+    path('crear-estudiante_curso/', CreateEstudianteCurso.as_view(), name='crear-estudiantes_cursos'),
+    path("gestionar-estudiante_curso/<int:pk>/", GestionarEstudianteCurso.as_view(), name="gestionar-estudiantes_cursos"),
+    path('eliminar-estudiante_curso/<int:pk>/', GestionarEstudianteCurso.as_view(), name='eliminar-estudiante-curso'),
 ]

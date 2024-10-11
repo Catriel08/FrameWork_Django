@@ -16,7 +16,7 @@
     <tbody>
         {% for matriculas in matriculas %}
         <tr>
-            <th scope="row">{{ forloop.counter }}</th>    
+            <td scope="row">{{ forloop.counter }}</td>    
             <td>{{ matriculas.estado }}</td>
             <td>{{ matriculas.fecha_inicio }}</td>
             <td>{{ matriculas.costo|intcomma }}</td>

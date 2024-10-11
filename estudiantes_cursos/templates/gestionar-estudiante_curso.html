@@ -1,0 +1,74 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<h1 class="form">{{ title }}</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="estudianteSelect" class="form-label">Estudiante</label>
+        <select class="form-control w-80" id="estudianteSelect" name="estudiante" required>
+            {% for persona in estudiantes %}
+            <option value="{{ persona.id }}" {% if persona.id == estudiantes_cursos.estudiante.id %}selected{% endif %}>
+                {{ persona.nombre }} {{ persona.apellidos }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="cursoSelect" class="form-label">Curso</label>
+        <select class="form-control w-100" id="cursoSelect" name="curso" required>
+            {% for curso in cursos %}
+            <option value="{{ curso.id }}" {% if curso.id == estudiantes_cursos.curso.id %}selected{% endif %}>
+                {{ curso.nombre }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+        <input type="date" class="form-control" id="fechaInicio" name="fecha_inicio" value="{{ estudiantes_cursos.fecha_inicio|date:'Y-m-d' }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="fechaFinal" class="form-label">Fecha Final</label>
+        <input type="date" class="form-control" id="fechaFinal" name="fecha_final" value="{{ estudiantes_cursos.fecha_final|date:'Y-m-d' }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="estadoSelect" class="form-label">Estado</label>
+        <select class="form-control" id="estadoSelect" name="estado" required>
+            <option value="En Curso" {% if estudiantes_cursos.estado == 'En Curso' %}selected{% endif %}>En curso</option>
+            <option value="Finalizado" {% if estudiantes_cursos.estado == 'Finalizado' %}selected{% endif %}>Finalizado</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="notaFinal" class="form-label">Nota Final</label>
+        <input type="number" step="0.1" min="0" max="10" class="form-control" id="notaFinal" name="nota_final" value="{{ estudiantes_cursos.nota_final }}" {% if estudiantes_cursos.estado == 'En Curso' %}disabled{% endif %}>
+    </div>
+
+    <div class="d-flex align-items-center">
+        <button type="submit" class="btn btn-success" name="update">Actualizar</button>
+        <button type="submit" class=" btn btn-danger mx-3" name="delete">Eliminar</button>
+        <a href="{% url 'estudiante-curso' %}" class="btn btn-secondary">Regresar</a>
+    </div>
+</form>
+
+<script>
+    document.getElementById('estadoSelect').addEventListener('change', function() {
+        var notaFinalInput = document.getElementById('notaFinal');
+        if (this.value === 'Finalizado') {
+            notaFinalInput.disabled = false;
+        } else {
+            notaFinalInput.disabled = true;
+            notaFinalInput.value = '0.0';
+        }
+    });
+</script>
+
+{% endblock content %}
