@@ -5,6 +5,32 @@ from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 
 
+class ListEstudiantesView(ListView):
+    template_name = 'lista-estudiantes.html'
+    context_object_name = 'estudiantes'
+
+    def get_queryset(self):
+        return Persona.objects.filter(rol='Estudiante')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Lista de Estudiantes'
+        return context
+    
+    
+class ListProfesoresView(ListView):
+    template_name = 'lista-profesores.html'
+    context_object_name = 'profesores'
+
+    def get_queryset(self):
+        return Persona.objects.filter(rol='Profesor')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Lista de Profesores'
+        return context
+
+
 class CreatePersonaView(CreateView):
     model = Persona
     fields = ['nombre', 'apellidos', 'dni', 'telefono', 'email', 'fecha_nacimiento']
@@ -44,31 +70,7 @@ class CreatePersonaView(CreateView):
     def get_success_url(self):
         return reverse(self.success_url) # Redirige a la url
         #return render(request, 'form-create-estudiantes.html')
-
-class ListEstudiantesView(ListView):
-    template_name = 'lista-estudiantes.html'
-    context_object_name = 'estudiantes'
-
-    def get_queryset(self):
-        return Persona.objects.filter(rol='Estudiante')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Lista de Estudiantes'
-        return context
         
-
-class ListProfesoresView(ListView):
-    template_name = 'lista-profesores.html'
-    context_object_name = 'profesores'
-
-    def get_queryset(self):
-        return Persona.objects.filter(rol='Profesor')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Lista de Profesores'
-        return context
 
 
 class CreateEstudiantesView(CreatePersonaView):

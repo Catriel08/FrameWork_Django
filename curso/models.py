@@ -7,16 +7,14 @@ class Curso(models.Model):
     capacidad_maxima = models.IntegerField(null=False)
     profesor = models.ForeignKey(Persona, on_delete=models.SET_NULL, null=True)
     
-    def save(self, *args, **kwargs):
-        self.full_clean()  # Esto invoca automáticamente el método clean() y valida todo el modelo.
-        super().save(*args, **kwargs)
+    #def save(self, *args, **kwargs):
+        #self.full_clean()
+        #super().save(*args, **kwargs)
         
-    def clean(self):
-        if self.capacidad_maxima <= 0:
-            raise ValidationError('La capacidad máxima debe ser mayor a 0.')
+    #def clean(self):
+        #if self.capacidad_maxima <= 0:
+            #raise ValidationError('La capacidad máxima debe ser mayor a 0.')
 
-        if self.profesor and self.profesor.rol != 'Profesor':
-            raise ValidationError('La persona asignada debe tener el rol "Profesor".')
         
     def __str__(self):
         return self.nombre

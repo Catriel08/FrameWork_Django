@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<h1 class="form">{{ title }}</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="estadoSelect" class="form-label">Estado</label>
+        <select class="form-control" id="estadoSelect" name="estado" required>
+            <option value="" disabled selected>Selecciona un estado</option>
+            <option value="En espera de pago">En espera de pago</option>
+            <option value="Pago">Pago</option>
+            <option value="Finalizada">Finalizada</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="fechaInicioInput" class="form-label">Fecha de Inicio</label>
+        <input type="date" class="form-control" id="fechaInicioInput" name="fecha_inicio" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="costoInput" class="form-label">Costo</label>
+        <input type="number" class="form-control" id="costoInput" name="costo" min="0" step="0.01" title="El costo debe ser un valor numérico positivo con hasta dos decimales." required>
+    </div>
+
+    <div class="mb-3">
+        <label for="estudianteCursoSelect" class="form-label">Estudiante y Curso</label>
+        <select class="form-control w-100" id="estudianteCursoSelect" name="estudiante_curso" required>
+            <option value="" disabled selected>Seleccione un estudiante y su curso</option>
+            {% for estudiante_curso in estudiante_curso %}  
+                <option value="{{ estudiante_curso.id }}">
+                    Nombre: {{ estudiante_curso.estudiante.nombre }} {{estudiante_curso.estudiante.apellidos}} - Curso: {{ estudiante_curso.curso.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-success mx-3">Guardar</button>
+        <a href="{% url 'matriculas' %}" class="btn btn-secondary" role="button">Regresar</a>
+    </div>
+</form>
+
+{% endblock content %}

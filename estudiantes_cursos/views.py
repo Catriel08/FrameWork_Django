@@ -44,7 +44,7 @@ class CreateEstudianteCurso(CreateView):
         else:
             nota_final = request.POST.get('nota_final', 0.0)
 
-        # Obtener la instancia del estudiante y del curso usando su ID
+        # Obtener la instancia del estudiante y del curso usando su id
         estudiante = Persona.objects.get(id=estudiante_id)
         curso = Curso.objects.get(id=curso_id)
 
@@ -60,6 +60,7 @@ class CreateEstudianteCurso(CreateView):
         estudiantes_cursos.save()
         messages.success(request, f"La inscripción de {estudiantes_cursos.estudiante} en el curso {estudiantes_cursos.curso} ha sido creada correctamente.")
         return redirect('estudiante-curso')
+    
 
 class GestionarEstudianteCurso(UpdateView):
     model = EstudiantesCursos
@@ -76,11 +77,26 @@ class GestionarEstudianteCurso(UpdateView):
         return context
     
     def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        
         if 'update' in request.POST:
-            messages.success(request, "Inscripción actualizada correctamente.")
+            # Aquí controlamos que el estado no se modifique si es "Finalizado"
+            if self.object.estado == 'Finalizado':
+                request.POST._mutable = True  # Me permite la modificación del objeto QueryDict, por defecto vienen como iinmutables o False
+                request.POST['estado'] = self.object.estado  # Restablecer el estado actual
+                request.POST._mutable = False  # Vuelve a establecer como inmutable
+            
+            form = self.get_form()
+            if form.is_valid():
+                self.object = form.save()
+                messages.success(request, "Inscripción actualizada correctamente.")
+                return self.form_valid(form)
+            else:
+                messages.error(request, "Hubo un error al actualizar la inscripción.")
+        
         elif 'delete' in request.POST:
-            self.object = self.get_object()
             self.object.delete()
             messages.success(request, "Inscripción eliminada correctamente.")
             return redirect(self.success_url)
-        return super().post(request, *args, **kwargs)
+
+        return self.form_invalid(form)

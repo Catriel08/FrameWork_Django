@@ -19,7 +19,7 @@ from django.urls import path
 from mainApp.views import inicio
 from persona.views import ListEstudiantesView,ListProfesoresView, CreateEstudiantesView, CreateProfesoresView, GestionarEstudianteView, GestionarProfesorView
 from curso.views import ListCursosView, CreateCursoView, GestionarCursoView
-from matriculas.views import matriculas
+from matriculas.views import ListMatriculaView, CreateMatriculaVew, GestionarMatriculaView
 from estudiantes_cursos.views import ListEstudianteCurso, CreateEstudianteCurso, GestionarEstudianteCurso
 
 urlpatterns = [
@@ -40,7 +40,9 @@ urlpatterns = [
     path('gestionar-profesor/<int:pk>/', GestionarProfesorView.as_view(), name='gestionar-profesor'),
 
     
-    path('matriculas/', matriculas, name='matriculas'),
+    path('matriculas/', ListMatriculaView.as_view(), name='matriculas'),
+    path("crear-matricula/", CreateMatriculaVew.as_view(), name="crear-matricula"),
+    path("gestionar-matricula/<int:pk>", GestionarMatriculaView.as_view(), name="gestionar-matriculas"),
     
     path('estudiante-curso/', ListEstudianteCurso.as_view(), name='estudiante-curso'),
     path('crear-estudiante_curso/', CreateEstudianteCurso.as_view(), name='crear-estudiantes_cursos'),

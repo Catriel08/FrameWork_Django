@@ -2,7 +2,26 @@
 {% load humanize %}
 
 {% block content %}
-<h1>{{ title }}</h1>
+
+{% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+<div class="d-flex justify-content-between aling-items-center">
+    <h1>{{ title }}</h1>
+    <div>
+        <a href="{% url "crear-matricula" %}" class="btn btn-outline-primary">Nueva Matricula</a>
+    </div>
+</div>
+
 
 <table class="table">
     <thead>
@@ -11,6 +30,7 @@
             <th scope="col">Estado</th>
             <th scope="col">Fecha de inicio</th>
             <th scope="col">Costo</th>
+            <th scope="col">Opciones</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +40,9 @@
             <td>{{ matriculas.estado }}</td>
             <td>{{ matriculas.fecha_inicio }}</td>
             <td>{{ matriculas.costo|intcomma }}</td>
+            <th>
+                <a href="{% url "gestionar-matriculas" pk=matriculas.pk %}" class="btn btn-primary">Gestionar</a>
+            </th>
         </tr>
         {% endfor %}
     </tbody>
