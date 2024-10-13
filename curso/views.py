@@ -27,7 +27,7 @@ class CreateCursoView(CreateView):
     def get(self, request, *args, **kwargs):
         profesores = Persona.objects.filter(rol='Profesor')
         return render(request, self.template_name, {
-            'title': 'Agregar curso nuevo',
+            'title': 'Agregar Curso Nuevo',
             'profesores': profesores
         })
 

@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="container text-center mt-5 custom-spacing">
+    <h1 class="display-4 fw-bold custom-spacing">¡Bienvenido a VSystem!</h1>
+    <p class="lead mt-5 custom-spacing">El sistema de gestión que te permite administrar estudiantes, profesores, cursos, inscripción de estudiantes en cursos y matrículas de manera sencilla y eficiente.</p>
+    <div class="d-flex justify-content-center gap-3 mt-5 custom-spacing">
+        <a href="{% url 'lista-estudiantes' %}" class="btn btn-outline-primary">Gestionar Estudiantes</a>
+        <a href="{% url 'lista-profesores' %}" class="btn btn-outline-success">Gestionar Profesores</a>
+        <a href="{% url 'cursos' %}" class="btn btn-outline-info">Gestionar Cursos</a>
+        <a href="{% url 'matriculas' %}" class="btn btn-outline-warning">Gestionar Matrículas</a>
+        <a href="{% url "estudiante-curso" %}" class="btn btn-outline-dark">Gestionar Incripción Curso</a>
+    </div>
+</div>
+
+{% endblock content %}

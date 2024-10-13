@@ -1,7 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
     text-decoration: none;
 }
 
@@ -14,6 +14,7 @@ header{
     width: 1212px;
     height: 140px;
     background-color: #686a6b;
+    /*background-color: #000000;*/
     margin: 0 auto;
 
 }
@@ -56,7 +57,7 @@ nav{
     margin: 0 auto;
     background-color: #000000;
     border: 1px solid #090249;
-    
+    /*border: 1px solid #ffffff;*/
     font-size: 15px;    
 }
 
@@ -232,6 +233,12 @@ footer{
 
 .btn-danger {
     color: #ff0000;
-    background-color: #ff0000; /* Asegúrate de que el color sea el correcto */
-    border-color: #dc3545; /* Esto debe ser el color del borde */
+    background-color: #ff0000;
+    border-color: #dc3545;
 }
+
+
+/*.custom-spacing {
+    margin-top: 40px; 
+    margin-bottom: 110px; 
+}*/

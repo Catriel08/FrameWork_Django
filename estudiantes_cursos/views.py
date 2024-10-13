@@ -80,7 +80,7 @@ class GestionarEstudianteCurso(UpdateView):
         self.object = self.get_object()
         
         if 'update' in request.POST:
-            # Aquí controlamos que el estado no se modifique si es "Finalizado"
+            # Se controla que el estado no se modifique si es "Finalizado"
             if self.object.estado == 'Finalizado':
                 request.POST._mutable = True  # Me permite la modificación del objeto QueryDict, por defecto vienen como iinmutables o False
                 request.POST['estado'] = self.object.estado  # Restablecer el estado actual

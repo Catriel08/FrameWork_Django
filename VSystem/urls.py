@@ -24,7 +24,7 @@ from estudiantes_cursos.views import ListEstudianteCurso, CreateEstudianteCurso,
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',inicio,  name='inicio'),
+    path('', inicio, name='inicio'),
     path('lista-estudiantes/', ListEstudiantesView.as_view(), name='lista-estudiantes'),
     path("lista-profesores/", ListProfesoresView.as_view(), name="lista-profesores"),
     
@@ -34,12 +34,9 @@ urlpatterns = [
     
     path('crear-estudiante/', CreateEstudiantesView.as_view(), name='form-create-estudiantes'),
     path("crear-profesor/", CreateProfesoresView.as_view(), name="form-create-profesores"),
-    
-    
     path('gestionar-estudiante/<int:pk>/', GestionarEstudianteView.as_view(), name='gestionar-estudiante'),
     path('gestionar-profesor/<int:pk>/', GestionarProfesorView.as_view(), name='gestionar-profesor'),
 
-    
     path('matriculas/', ListMatriculaView.as_view(), name='matriculas'),
     path("crear-matricula/", CreateMatriculaVew.as_view(), name="crear-matricula"),
     path("gestionar-matricula/<int:pk>", GestionarMatriculaView.as_view(), name="gestionar-matriculas"),
